@@ -1,0 +1,28 @@
+// This #include statement was automatically added by the Particle IDE.
+#include <Adafruit_DHT.h>
+#include <string>
+
+//Defining which pin is being used.
+#define DHTPIN 2 //
+
+//Difining which sensor is being used
+#define DHTTYPE DHT11	
+
+
+DHT dht(DHTPIN, DHTTYPE);
+
+void setup() {
+
+	dht.begin();
+}
+
+void loop() {
+
+	float temperature = dht.getTempCelcius();
+	String temp = String(temperature);
+	//The Particle.publish takes the name of the wedhook name, the input and PRIVATE
+    Particle.publish("SIT210-3.1P", temp, PRIVATE);
+ 
+
+    delay(30000); //30 second delay
+}
